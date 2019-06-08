@@ -5,10 +5,17 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.database.Cursor;
 import android.content.ContentValues;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MemoryActivity extends AppCompatActivity {
 
@@ -30,6 +37,7 @@ public class MemoryActivity extends AppCompatActivity {
     private Button TrueBtn;
     private String wordnow;
 
+    private Spinner spinner1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +46,33 @@ public class MemoryActivity extends AppCompatActivity {
         c_db=dbHelper.query("word");
         c_db.moveToFirst();
         SetInterface(c_db);
-    }
 
+        spinner1 = (Spinner) findViewById(R.id.spi_choose);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                MemoryActivity.this, android.R.layout.simple_spinner_item,getData()
+                );
+        spinner1.setAdapter(adapter);
+        spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(MemoryActivity.this,
+                        String.valueOf( parent.getItemIdAtPosition(position)),
+                        Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+    }
+    private List<String> getData(){
+        List<String> dataList = new ArrayList<String>();
+        dataList.add("四级单词");
+        dataList.add("六级单词");
+        return dataList;
+    }
     //选择单词1
     public void btn_mem_select_onclick1(View view) {
         BtnMenWd1=(Button)findViewById(R.id.btn_mem_word1);
@@ -51,6 +84,27 @@ public class MemoryActivity extends AppCompatActivity {
         {//Wrong
             BtnMenWd1.setBackgroundColor(Color.parseColor("#b20a2c"));
             TrueBtn.setBackgroundColor(Color.parseColor("#00F260"));
+
+            Cursor c=SearchWordFromWord(wordnow,c_db,0);
+            int id_index=c.getColumnIndex("id");
+            int word_index=c.getColumnIndex("name");
+            int mean_index=c.getColumnIndex("meaning");
+            int book_index=c.getColumnIndex("book");
+            int ifwrong_index=c.getColumnIndex("ifwrong");
+            int ifnote_index=c.getColumnIndex("ifnote");
+
+            int id=c.getInt(id_index);
+            String WordName=c.getString(word_index);
+            String WordMean=c.getString(mean_index);
+            String book=c.getString(book_index);
+            int ifnote=c.getInt(ifnote_index);
+            ContentValues values = new ContentValues();
+            values.put("name", WordName);
+            values.put("meaning", WordMean);
+            values.put("book", book);
+            values.put("ifwrong", 1);
+            values.put("ifnote", ifnote);
+            dbHelper.update(values,"id=?",new String[]{String.valueOf(id)},"word");
         }
     }
 
@@ -64,6 +118,27 @@ public class MemoryActivity extends AppCompatActivity {
         else {//Wrong
             BtnMenWd2.setBackgroundColor(Color.parseColor("#b20a2c"));
             TrueBtn.setBackgroundColor(Color.parseColor("#00F260"));
+
+            Cursor c=SearchWordFromWord(wordnow,c_db,0);
+            int id_index=c.getColumnIndex("id");
+            int word_index=c.getColumnIndex("name");
+            int mean_index=c.getColumnIndex("meaning");
+            int book_index=c.getColumnIndex("book");
+            int ifwrong_index=c.getColumnIndex("ifwrong");
+            int ifnote_index=c.getColumnIndex("ifnote");
+
+            int id=c.getInt(id_index);
+            String WordName=c.getString(word_index);
+            String WordMean=c.getString(mean_index);
+            String book=c.getString(book_index);
+            int ifnote=c.getInt(ifnote_index);
+            ContentValues values = new ContentValues();
+            values.put("name", WordName);
+            values.put("meaning", WordMean);
+            values.put("book", book);
+            values.put("ifwrong", 1);
+            values.put("ifnote", ifnote);
+            dbHelper.update(values,"id=?",new String[]{String.valueOf(id)},"word");
         }
     }
 
@@ -77,6 +152,27 @@ public class MemoryActivity extends AppCompatActivity {
         else {//Wrong
             BtnMenWd3.setBackgroundColor(Color.parseColor("#b20a2c"));
             TrueBtn.setBackgroundColor(Color.parseColor("#00F260"));
+
+            Cursor c=SearchWordFromWord(wordnow,c_db,0);
+            int id_index=c.getColumnIndex("id");
+            int word_index=c.getColumnIndex("name");
+            int mean_index=c.getColumnIndex("meaning");
+            int book_index=c.getColumnIndex("book");
+            int ifwrong_index=c.getColumnIndex("ifwrong");
+            int ifnote_index=c.getColumnIndex("ifnote");
+
+            int id=c.getInt(id_index);
+            String WordName=c.getString(word_index);
+            String WordMean=c.getString(mean_index);
+            String book=c.getString(book_index);
+            int ifnote=c.getInt(ifnote_index);
+            ContentValues values = new ContentValues();
+            values.put("name", WordName);
+            values.put("meaning", WordMean);
+            values.put("book", book);
+            values.put("ifwrong", 1);
+            values.put("ifnote", ifnote);
+            dbHelper.update(values,"id=?",new String[]{String.valueOf(id)},"word");
         }
     }
 
@@ -90,6 +186,27 @@ public class MemoryActivity extends AppCompatActivity {
         else {//Wrong
             BtnMenWd4.setBackgroundColor(Color.parseColor("#b20a2c"));
             TrueBtn.setBackgroundColor(Color.parseColor("#00F260"));
+
+            Cursor c=SearchWordFromWord(wordnow,c_db,0);
+            int id_index=c.getColumnIndex("id");
+            int word_index=c.getColumnIndex("name");
+            int mean_index=c.getColumnIndex("meaning");
+            int book_index=c.getColumnIndex("book");
+            int ifwrong_index=c.getColumnIndex("ifwrong");
+            int ifnote_index=c.getColumnIndex("ifnote");
+
+            int id=c.getInt(id_index);
+            String WordName=c.getString(word_index);
+            String WordMean=c.getString(mean_index);
+            String book=c.getString(book_index);
+            int ifnote=c.getInt(ifnote_index);
+            ContentValues values = new ContentValues();
+            values.put("name", WordName);
+            values.put("meaning", WordMean);
+            values.put("book", book);
+            values.put("ifwrong", 1);
+            values.put("ifnote", ifnote);
+            dbHelper.update(values,"id=?",new String[]{String.valueOf(id)},"word");
         }
     }
 

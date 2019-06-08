@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="books">
+        <item>"四级词汇"</item>
+        <item>"六级词汇"</item>
+    </string-array>
+</resources>
