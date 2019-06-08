@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.content.ContentValues;
 
 import org.w3c.dom.Text;
 
@@ -17,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     private  static final int REQUEST_REGISTER_CODE=0;
     private  static final int REQUEST_SIGNIN_CODE=1;
 
+    private DBHelper dbHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +27,50 @@ public class MainActivity extends AppCompatActivity {
         tvStatus = findViewById(R.id.tv_stutas);
         tvEmail = findViewById(R.id.tv_email);
         tvId = findViewById(R.id.tv_id);
+
+        dbHelper=new DBHelper(this);
+        ContentValues values = new ContentValues();
+        values.put("name", "watermelon");
+        values.put("meaning", "西瓜");
+        values.put("book", "四级单词");
+        values.put("ifwrong", "0");
+        values.put("ifnote", "0");
+        dbHelper.insert(values,"word");
+        values = new ContentValues();
+        values.put("name", "lemon");
+        values.put("meaning", "柠檬");
+        values.put("book", "四级单词");
+        values.put("ifwrong", "0");
+        values.put("ifnote", "0");
+        dbHelper.insert(values,"word");
+        values = new ContentValues();
+        values.put("name", "apple");
+        values.put("meaning", "苹果");
+        values.put("book", "四级单词");
+        values.put("ifwrong", "0");
+        values.put("ifnote", "0");
+        dbHelper.insert(values,"word");
+        values = new ContentValues();
+        values.put("name", "banana");
+        values.put("meaning", "香蕉");
+        values.put("book", "四级单词");
+        values.put("ifwrong", "0");
+        values.put("ifnote", "0");
+        dbHelper.insert(values,"word");
+        values = new ContentValues();
+        values.put("name", "pear");
+        values.put("meaning", "梨");
+        values.put("book", "四级单词");
+        values.put("ifwrong", "0");
+        values.put("ifnote", "0");
+        dbHelper.insert(values,"word");
+        values = new ContentValues();
+        values.put("name", "strawberry");
+        values.put("meaning", "草莓");
+        values.put("book", "四级单词");
+        values.put("ifwrong", "0");
+        values.put("ifnote", "0");
+        dbHelper.insert(values,"word");
     }
 
     public void btn_start_signin_onclick(View view) {

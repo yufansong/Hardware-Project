@@ -25,12 +25,12 @@
             android:id="@+id/tv_mem_word"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
             android:gravity="center"
+            android:onClick="btn_mem_collect_onclick"
             android:text="word"
             android:textSize="50sp"
-            android:textStyle="bold"
-            android:layout_marginTop="100dp"
-            android:onClick="btn_mem_collect_onclick"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_mem_collect"
@@ -48,7 +48,7 @@
             android:layout_height="81dp"
             android:layout_marginTop="70dp"
             android:background="@android:color/holo_blue_bright"
-            android:onClick="btn_mem_select_onclick"
+            android:onClick="btn_mem_select_onclick1"
             android:text="register"
             android:textStyle="bold" />
 
@@ -58,7 +58,7 @@
             android:layout_height="81dp"
             android:layout_marginTop="30dp"
             android:background="@android:color/holo_blue_bright"
-            android:onClick="btn_mem_select_onclick"
+            android:onClick="btn_mem_select_onclick2"
             android:text="register"
             android:textStyle="bold" />
 
@@ -68,7 +68,7 @@
             android:layout_height="81dp"
             android:layout_marginTop="30dp"
             android:background="@android:color/holo_blue_bright"
-            android:onClick="btn_mem_select_onclick"
+            android:onClick="btn_mem_select_onclick3"
             android:text="register"
             android:textStyle="bold" />
 
@@ -78,7 +78,7 @@
             android:layout_height="81dp"
             android:layout_marginTop="30dp"
             android:background="@android:color/holo_blue_bright"
-            android:onClick="btn_mem_select_onclick"
+            android:onClick="btn_mem_select_onclick4"
             android:text="register"
             android:textStyle="bold" />
 
