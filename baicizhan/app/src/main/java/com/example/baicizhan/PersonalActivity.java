@@ -33,7 +33,10 @@ public class PersonalActivity extends AppCompatActivity {
         Intent intent = new Intent(this,Error_Collect_Activity.class);
         startActivityForResult(intent,REQUEST_ERROR_COLLECT_CODE);
     }
-
+    public void btn_per_start_collet(View view) {
+        Intent intent = new Intent(this,CollectActivity.class);
+        startActivityForResult(intent,REQUEST_ERROR_COLLECT_CODE);
+    }
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
         if(intent==null)

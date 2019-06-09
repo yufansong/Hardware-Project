@@ -73,7 +73,7 @@
             android:background="@android:color/holo_blue_bright"
             android:textSize="30dp"
             android:text="收藏本"
-            android:onClick="btn_per_start_error"/>
+            android:onClick="btn_per_start_collet"/>
 
     </LinearLayout>
 

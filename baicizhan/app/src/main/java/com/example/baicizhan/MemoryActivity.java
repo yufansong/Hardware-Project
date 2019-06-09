@@ -33,6 +33,8 @@ public class MemoryActivity extends AppCompatActivity {
     private Button BtnMenWd2;
     private Button BtnMenWd3;
     private Button BtnMenWd4;
+    private Button BtnNext;
+    private Spinner Spn_book;
     private String TrueMean="ERROR";
     private Button TrueBtn;
     private String wordnow;
@@ -318,22 +320,87 @@ public class MemoryActivity extends AppCompatActivity {
             TxtvClct.setText("已收藏");
         else
             TxtvClct.setText("未收藏");
-        BtnMenWd1.setText(WordMean);
-        wordnow=WordName;
-        TrueMean=WordMean;
-        TrueBtn=BtnMenWd1;
+
+        int trueloc=(int)(1+Math.random()*(4-1+1));
 
         Cursor c_wrong=SearchWordFromWord(WordName,c,1);
         int mean_wrong_index=c_wrong.getColumnIndex("meaning");
-        String wrong_mean=c_wrong.getString(mean_wrong_index);
-        BtnMenWd2.setText(wrong_mean);
+        String wrong_mean1=c_wrong.getString(mean_wrong_index);
         c_wrong=SearchWordFromWord(WordName,c,2);
         mean_wrong_index=c_wrong.getColumnIndex("meaning");
-        wrong_mean=c_wrong.getString(mean_wrong_index);
-        BtnMenWd3.setText(wrong_mean);
+        String wrong_mean2=c_wrong.getString(mean_wrong_index);
         c_wrong=SearchWordFromWord(WordName,c,3);
         mean_wrong_index=c_wrong.getColumnIndex("meaning");
-        wrong_mean=c_wrong.getString(mean_wrong_index);
-        BtnMenWd4.setText(wrong_mean);
+        String wrong_mean3=c_wrong.getString(mean_wrong_index);
+
+        switch (trueloc){
+            case 1:
+                BtnMenWd1.setText(WordMean);
+                BtnMenWd2.setText(wrong_mean1);
+                BtnMenWd3.setText(wrong_mean2);
+                BtnMenWd4.setText(wrong_mean3);
+                TrueBtn=BtnMenWd1;
+                break;
+            case 2:
+                BtnMenWd2.setText(WordMean);
+                BtnMenWd1.setText(wrong_mean1);
+                BtnMenWd3.setText(wrong_mean2);
+                BtnMenWd4.setText(wrong_mean3);
+                TrueBtn=BtnMenWd2;
+                break;
+            case 3:
+                BtnMenWd3.setText(WordMean);
+                BtnMenWd2.setText(wrong_mean1);
+                BtnMenWd1.setText(wrong_mean2);
+                BtnMenWd4.setText(wrong_mean3);
+                TrueBtn=BtnMenWd3;
+                break;
+            default:
+                BtnMenWd4.setText(WordMean);
+                BtnMenWd2.setText(wrong_mean1);
+                BtnMenWd3.setText(wrong_mean2);
+                BtnMenWd1.setText(wrong_mean3);
+                TrueBtn=BtnMenWd4;
+        }
+
+        wordnow=WordName;
+        TrueMean=WordMean;
+
+
+        BtnMenWd1.setBackgroundColor(Color.parseColor("#00DDFF"));
+
+        BtnMenWd2.setBackgroundColor(Color.parseColor("#00DDFF"));
+
+        BtnMenWd3.setBackgroundColor(Color.parseColor("#00DDFF"));
+
+        BtnMenWd4.setBackgroundColor(Color.parseColor("#00DDFF"));
+    }
+
+    public void btn_next_onclick(View view)
+    {
+        TxtvWord=(TextView)findViewById(R.id.tv_mem_word);
+        String word=TxtvWord.getText().toString();
+        Spn_book=(Spinner)findViewById(R.id.spi_choose);
+        String book=Spn_book.getSelectedItem().toString();
+//        System.out.println(book);
+        Cursor c=SearchWordNextFromBook(book,c_db,word);
+        SetInterface(c);
+    }
+
+    public void spn_onclick(View view)
+    {
+        c_db.moveToFirst();
+        while(!c_db.isAfterLast())
+        {
+            Spn_book=(Spinner)findViewById(R.id.spi_choose);
+            String book_=Spn_book.getSelectedItem().toString();
+            int book_index=c_db.getColumnIndex("book");
+            String book=c_db.getString(book_index);
+            if(book.equals(book_))
+                break;
+            else
+                c_db.moveToNext();
+        }
+        SetInterface(c_db);
     }
 }

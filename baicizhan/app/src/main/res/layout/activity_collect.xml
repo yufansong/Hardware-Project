@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Error_Collect_Activity"
+    tools:context=".CollectActivity"
     android:theme="@style/AppTheme">
 
     <LinearLayout
@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="错词本"
+            android:text="收藏本"
             android:textSize="50sp"
             android:textStyle="bold" />
 
