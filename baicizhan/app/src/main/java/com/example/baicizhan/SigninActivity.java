@@ -37,10 +37,27 @@ public class SigninActivity extends AppCompatActivity {
             password=c_db.getString(password_index);
         }
 
+        String email_=etEmail.getText().toString();
+        String password_=etPassword.getText().toString();
         Intent intent = new Intent();
         intent.putExtra("id",etId.getText().toString());
         intent.putExtra("email",email);
         intent.putExtra("password",password);
+        intent.putExtra("result",0);
+        if(email.equals(email_)&&password.equals(password_))
+        {
+            intent.putExtra("result","right");
+            System.out.println("success");
+        }
+        else
+        {
+            intent.putExtra("result","wrong");
+            System.out.println("fail");
+        }
+        String result = intent.getStringExtra("result");
+        System.out.println("Signin Result:"+result);
+        System.out.println("Email:"+email);
+        System.out.println("Password:"+password);
         setResult(0,intent);
         finish();
     }

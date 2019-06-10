@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void btn_start_signin_onclick(View view) {
         Intent intent = new Intent(this,SigninActivity.class);
-        startActivityForResult(intent,REQUEST_SIGNIN_CODE);
+        startActivityForResult(intent,REQUEST_SIGNIN_CODE);//不知道这里有没有问题
     }
 
 
@@ -140,20 +140,35 @@ public class MainActivity extends AppCompatActivity {
         {
             return;
         }
-        switch(requestCode)
+//        requestCode = REQUEST_SIGNIN_CODE_right;
+        Intent intent2 = new Intent(this,PersonalActivity.class);
+        Intent intent3 = new Intent(this,MainActivity.class);
+        if (requestCode == REQUEST_REGISTER_CODE)
         {
-            case REQUEST_REGISTER_CODE:
-                tvStatus.setText("注册成功");
-                tvId.setText("ID"+intent.getStringExtra("id"));
-                tvEmail.setText("Email"+intent.getStringExtra("email"));
-                break;
-            case  REQUEST_SIGNIN_CODE:
+            tvStatus.setText("注册成功");
+            tvId.setText("ID"+intent.getStringExtra("id"));
+            tvEmail.setText("Email"+intent.getStringExtra("email"));
+            startActivityForResult(intent2,REQUEST_REGISTER_CODE);
+        }
+        if(requestCode == REQUEST_SIGNIN_CODE)
+        {
+            String result = "";
+            result = intent.getStringExtra("result");
+            System.out.println("Main Result:"+result);
+            if(result.equals("right"))
+            {
+                tvStatus.setText("登陆失败");
+                tvId.setText("失败");
+                startActivityForResult(intent2,REQUEST_REGISTER_CODE);
+                tvEmail.setText("");
+            }
+            else
+            {
                 tvStatus.setText("登陆成功");
                 tvId.setText("您好"+intent.getStringExtra("id"));
+                startActivityForResult(intent3,REQUEST_REGISTER_CODE);
                 tvEmail.setText("");
-                break;
+            }
         }
-        Intent intent2 = new Intent(this,PersonalActivity.class);
-        startActivityForResult(intent2,REQUEST_REGISTER_CODE);
     }
 }

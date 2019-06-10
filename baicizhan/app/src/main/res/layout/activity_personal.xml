@@ -45,17 +45,6 @@
             />
 
         <Button
-            android:id="@+id/btn_per_book"
-            android:layout_width="match_parent"
-            android:layout_height="81dp"
-            android:layout_marginTop="30dp"
-            android:background="@android:color/holo_blue_bright"
-            android:textSize="30dp"
-            android:text="选择单词书"
-            android:onClick="btn_per_start_book"
-            />
-
-        <Button
             android:id="@+id/btn_per_error"
             android:layout_width="match_parent"
             android:layout_height="81dp"
