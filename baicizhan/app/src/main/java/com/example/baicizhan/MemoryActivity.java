@@ -215,7 +215,9 @@ public class MemoryActivity extends AppCompatActivity {
     //收藏触发
     public void btn_mem_collect_onclick(View view) {
         TxtvClct=(TextView)findViewById(R.id.tv_mem_collect);
+        TxtvWord=(TextView)findViewById(R.id.tv_mem_word);
         TxtvClct.setText("已收藏");
+        TxtvWord.setTextColor(Color.parseColor("#fc4a1a"));
         Cursor c=SearchWordFromWord(wordnow,c_db,0);
         int id_index=c.getColumnIndex("id");
         int word_index=c.getColumnIndex("name");
@@ -317,10 +319,15 @@ public class MemoryActivity extends AppCompatActivity {
         int ifnote=c.getInt(ifnote_index);
         TxtvWord.setText(WordName);
         if(ifnote==1)
+        {
             TxtvClct.setText("已收藏");
+            TxtvWord.setTextColor(Color.parseColor("#fc4a1a"));
+        }
         else
+        {
             TxtvClct.setText("未收藏");
-
+            TxtvWord.setTextColor(Color.parseColor("#737373"));
+        }
         int trueloc=(int)(1+Math.random()*(4-1+1));
 
         Cursor c_wrong=SearchWordFromWord(WordName,c,1);
